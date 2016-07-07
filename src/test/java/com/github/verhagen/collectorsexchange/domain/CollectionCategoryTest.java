@@ -10,17 +10,20 @@ public class CollectionCategoryTest {
 	@Test
 	public void create() throws Exception {
 		Tag tagAh = Tag.create("Albert-Hein");
-		CollectionCategory category = CollectionCategory.create(
+		Tag tag2016 = Tag.create("2016");
+        CollectionCategory category = CollectionCategory.create(
 				createCollection()
 				, tagAh
 				, Tag.create("spaaractie")
-				, Tag.create("2016")
+				, tag2016
 				);
 
-//		assertEquals(actual, "");
+		assertEquals(category.getTags().size(), 3);
+		assertTrue(category.getTags().contains(tag2016));
 		assertTrue(category.getTags().contains(tagAh), "The collection should contain the tag '"
 				+ tagAh.getName() + "'");
 	}
+
 
 	private Collection createCollection() {
 		ItemType itemTypeImage = ItemType.create("image");
